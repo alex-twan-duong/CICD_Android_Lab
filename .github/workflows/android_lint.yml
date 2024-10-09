@@ -21,7 +21,6 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .github/workflows/*values*.yaml
-          config_file: .yamllint.yml
           strict: true
           no_warnings: true
         continue-on-error: false

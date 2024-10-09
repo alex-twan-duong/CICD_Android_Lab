@@ -1,0 +1,37 @@
+name: Create Builds
+env:
+  main_project_module: app
+  playstore_name: CICD Android Training
+'on':
+  pull_request:
+    branches:
+      - releases/**
+  workflow_dispatch: null
+jobs:
+  run-debug-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set current date as env variable
+        run: echo "date_today=$(date +'%Y-%m%d')" >> $GITHUB_ENV
+      - name: Set Repo Name as evn variable
+        run: >-
+          echo "repository_name=$(echo '${{ github.repository }}' | awk _F '/'
+          '{print $2}')" >> $GITHUB_ENV
+      - name: Setup SDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '17'
+          cache: gradle
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+      - name: Build project
+        run: ./gradlew build
+      - name: 'Assemble APK Debug - ${{ env.main_project_module }} module'
+        run: ./gradlew assembleDebug
+      - name: 'Assemble APK Release - ${{ env.main_project_module }} module'
+        run: ./gradlew assemble
+      - name: 'Assemble AAB Bundle Release - ${{ env.main_project_module }} module'
+        run: './gradlew ${{ env.main_project_module }}::bundleRelease'

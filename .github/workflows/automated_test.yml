@@ -27,13 +27,13 @@ jobs:
         with:
           name: reports
           path: app/build/test-results
-  view-report:
+  view-unit-test-report:
     name: View & Download Reports
     runs-on: ubuntu-latest
     needs: run-unit-test
     if: '${{ always() }}'
     steps:
-      - name: Downloaad Test Report
+      - name: Download Test Report
         uses: actions/download-artifact@v4
         with:
           name: reports

@@ -1,7 +1,7 @@
 name: Unit-Testing
 
 on:
- pull_request: 
+ pull_request:
   branches: [training/cicd_pipeline]
 
 jobs:
@@ -13,4 +13,4 @@ jobs:
    - name: "Checkout Repo"
      uses: actions/checkout@v4
      with:
-        submodules: true
+      submodules: true

@@ -1,43 +1,41 @@
 name: Unit-Testing
-
-on:
- push:
-  branches: [training/cicd_pipeline]
-
+'on':
+  push:
+    branches:
+      - training/cicd_pipeline
 jobs:
- run-unit-test:
-  name: Run Unit Tests
-  runs-on: ubuntu-latest
-  timeout-minutes: 100
-  steps:
-   - name: "Checkout Repo"
-     uses: actions/checkout@v4
-     with:
-      submodules: true
-   - name: SetUp JDK
-     uses: actions/setup-java@v4
-     with:
-      distribution: 'temurin'
-      java-version: 21
-      cache: gradle
-   - name: Android Unit Test
-     run: ./gradlew testDebugUnitTest
-   - name: Upload Test Reports
-     uses: actions/upload-artifact@v4
-     if: ${{ always() }}
-     with:
-        name: reports
-        path: app/build/test-results
- view-report:
+  run-unit-test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: SetUp JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+      - name: Android Unit Test
+        run: ./gradlew testDebugUnitTest
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v4
+        if: '${{ always() }}'
+        with:
+          name: reports
+          path: app/build/test-results
+  view-report:
     name: View & Download Reports
     runs-on: ubuntu-latest
     needs: run-unit-test
-    if: ${{ always() }}
+    if: '${{ always() }}'
     steps:
-        - name: Downloaad Test Report
-          uses: actions/download-artifact@v4
-          with:
-            name: reports
-        - name: Android Test Report
-          uses: asadmansr/android-test-report-action@v1.2.0
-          
+      - name: Downloaad Test Report
+        uses: actions/download-artifact@v4
+        with:
+          name: reports
+      - name: Android Test Report
+        uses: asadmansr/android-test-report-action@v1.2.0

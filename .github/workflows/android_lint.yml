@@ -2,11 +2,11 @@ name: Android CI/CD Training
 
 on:
   push:
-    branches: [ training/** ]
+    branches: [ training/ ]
     paths : 
       - .github/workflows/android.yml
   pull_request:
-    branches: [ training/** ]
+    branches: [ training/ ]
 
 jobs:
   android-lint-check:

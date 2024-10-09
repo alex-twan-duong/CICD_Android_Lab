@@ -3,9 +3,7 @@ name: Lint Checking
 on:
   push:
     branches: [ training/cicd_pipeline ]
-    paths : 
-      - .github/workflows/android_lint.yml
-      - .github/workflows/automated_test.yml
+    paths: 
       - '*/src/**'
       - gradle/**
       - '**.gradle'
@@ -30,11 +28,18 @@ jobs:
           distribution: 'temurin'
           java-version: 21
           cache: gradle
-      - run: ./gradlew lint
-      - uses: yutailang0119/action-android-lint@v4
-        with:
-          report-path: build/reports/*.xml
-          ignore-warnings: false
+      - name : Run Yaml Lint
+        id: yamllint
+        uses: jacobtomlinson/gha-lint-yaml@master
+        with: 
+          path: .github/workflows/**.yml
+          strict: true
+        continue-on-error: false
+      - name : Check Yaml Lint Output
+        run: |
+          echo "There were ${{ steps.yamllint.outputs.warnings }} YAML linting warnings."
+      - name : Run Project Lint
+        run: ./gradlew lint
         continue-on-error: false
 
 

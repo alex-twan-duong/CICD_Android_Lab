@@ -3,12 +3,6 @@ name: Lint Checking
 on:
   push:
     branches: [training/cicd_pipeline]
-    paths:
-      - '*/src/**'
-      - gradle/**
-      - '**.gradle'
-      - gradle.properties
-      - gradlew*
   pull_request:
     branches: [training/cicd_pipeline]
 

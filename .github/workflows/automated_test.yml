@@ -5,12 +5,12 @@ on:
   branches: [training/cicd_pipeline]
 
 jobs:
-    run-unit-test:
-        name: Run Unit Tests
-        runs-on: ubuntu-latest
-        timeout-minutes: 100
-        steps:
-            - name: "Checkout Repo"
-              uses: actions/checkout@v4
-              with:
-               submodules: true
+ run-unit-test:
+  name: Run Unit Tests
+  runs-on: ubuntu-latest
+  timeout-minutes: 100
+  steps:
+   - name: "Checkout Repo"
+     uses: actions/checkout@v4
+     with:
+        submodules: true

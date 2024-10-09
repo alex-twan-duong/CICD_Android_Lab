@@ -20,7 +20,7 @@ jobs:
         id: yamllint
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: .github/workflows/*values*.yaml
+          file_or_dir: .github/workflows/**.yaml
           strict: true
           no_warnings: true
         continue-on-error: false

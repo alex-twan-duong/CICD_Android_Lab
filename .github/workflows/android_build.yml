@@ -39,11 +39,20 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: >-
-            ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }}
+            ${{ env.date_today }} - ${{ env.playstore_name }} - ${{
+            env.repository_name }} - APK Debug
           path: '${{ env.main_project_module }}/build/outputs/apk/debug/'
       - name: Upload APK Release
         uses: actions/upload-artifact@v4
         with:
           name: >-
-            ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }}
+            ${{ env.date_today }} - ${{ env.playstore_name }} - ${{
+            env.repository_name }} - APK Release
           path: '${{ env.main_project_module }}/build/outputs/apk/release/'
+      - name: Upload AAB Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: >-
+            ${{ env.date_today }} - ${{ env.playstore_name }} -- ${{
+            env.repository_name }} - AAB Bundle
+          path: '${{ env.main_project_module }}/build/outputs/bundle/release/'

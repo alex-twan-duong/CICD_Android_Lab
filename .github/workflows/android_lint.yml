@@ -31,10 +31,8 @@ jobs:
           cache: gradle
       - name : Run Yaml Lint
         id: yamllint
-        uses: jacobtomlinson/gha-lint-yaml@master
-        with: 
-          path: .github/workflows/**
-          strict: true
+        run: |
+          yamllint .
         continue-on-error: false
       - name : Check Yaml Lint Output
         run: |

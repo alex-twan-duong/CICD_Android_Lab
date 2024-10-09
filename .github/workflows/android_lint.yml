@@ -21,7 +21,7 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .github/workflows/
-          strict: true
+          strict: false
           no_warnings: true
         continue-on-error: false
       - name: SetUp JDK

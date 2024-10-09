@@ -4,6 +4,7 @@ on:
   push:
     branches: [ training/cicd_pipeline ]
     paths: 
+      - .github/workflows/**
       - '*/src/**'
       - gradle/**
       - '**.gradle'
@@ -32,7 +33,7 @@ jobs:
         id: yamllint
         uses: jacobtomlinson/gha-lint-yaml@master
         with: 
-          path: .github/workflows/**.yml
+          path: .github/workflows/**
           strict: true
         continue-on-error: false
       - name : Check Yaml Lint Output

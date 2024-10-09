@@ -34,4 +34,18 @@ jobs:
       - name: 'Assemble APK Release - ${{ env.main_project_module }} module'
         run: ./gradlew assemble
       - name: 'Assemble AAB Bundle - ${{ env.main_project_module }} module'
-        run: './gradlew ${{ env.main_project_module }}::bundleRelease'
+        run: './gradlew ${{ env.main_project_module }}:bundleRelease'
+      - name: Upload APK Debug
+        uses: actions/upload-artifact@v4
+        with:
+          name: >-
+            ${{ env.date_today }} - ${{ env.playstore_name }} - ${{
+            env.repository_name }}
+          path: '${{ env.main_project_module }}/build/outputs/apk/debug/'
+      - name: Upload APK Debug
+        uses: actions/upload-artifact@v4
+        with:
+          name: >-
+            ${{ env.date_today }} - ${{ env.playstore_name }} - ${{
+            env.repository_name }}
+          path: '${{ env.main_project_module }}/build/outputs/apk/debug/'

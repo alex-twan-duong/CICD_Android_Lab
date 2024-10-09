@@ -2,7 +2,7 @@ name: Unit-Testing
 
 on:
     pull_request:
-      branches: [ training/cicd_pipeline ]
+      branches: [training/cicd_pipeline]
 
 jobs:
     run-unit-test:
@@ -10,10 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 100
         steps:
-            - name:                 "Checkout Repo"
+            - name: "Checkout Repo"
               uses: actions/checkout@v4
-              with: 
+              with:
                 submodules: true
-
-
-

@@ -2,8 +2,8 @@ name: Lint Checking
 
 on:
   push:
-    branches: [ training/cicd_pipeline ]
-    paths: 
+    branches: [training/cicd_pipeline]
+    paths:
       - .github/workflows/**
       - '*/src/**'
       - gradle/**
@@ -11,7 +11,7 @@ on:
       - gradle.properties
       - gradlew*
   pull_request:
-    branches: [ training/cicd_pipeline ]
+    branches: [training/cicd_pipeline]
 
 jobs:
   android-lint-check:
@@ -25,19 +25,16 @@ jobs:
           fetch-depth: 1
       - name: SetUp JDK
         uses: actions/setup-java@v4
-        with: 
+        with:
           distribution: 'temurin'
           java-version: 21
           cache: gradle
-      - name : Run Yaml Lint
+      - name: Run Yaml Lint
         id: yamllint
         run: |
           yamllint .
         continue-on-error: false
-      - name : Check Yaml Lint Output
-        run: |
-          echo "There were ${{ steps.yamllint.outputs.warnings }} YAML linting warnings."
-      - name : Run Project Lint
+      - name: Run Project Lint
         run: ./gradlew lint
         continue-on-error: false
 

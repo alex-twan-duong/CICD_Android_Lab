@@ -1,15 +1,6 @@
 name: Unit-Testing
 
 on:
-    push:
-      branches: [ training/cicd_pipeline ]
-      paths : 
-        - .github/workflows/android_lint.yml
-        - '*/src/**'
-        - gradle/**
-        - '**.gradle'
-        - gradle.properties
-        - gradlew*
     pull_request:
       branches: [ training/cicd_pipeline ]
 

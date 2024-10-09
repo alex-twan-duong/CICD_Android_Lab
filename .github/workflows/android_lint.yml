@@ -4,7 +4,6 @@ on:
   push:
     branches: [training/cicd_pipeline]
     paths:
-      - .github/workflows/**
       - '*/src/**'
       - gradle/**
       - '**.gradle'
@@ -31,8 +30,12 @@ jobs:
           cache: gradle
       - name: Run Yaml Lint
         id: yamllint
-        run: |
-          yamllint .
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .github/workflows/*values*.yaml
+          config_file: .yamllint.yml
+          strict: true
+          no_warnings: true
         continue-on-error: false
       - name: Run Project Lint
         run: ./gradlew lint

@@ -1,0 +1,28 @@
+name: Android CI/CD Training - Automated Test
+
+on:
+    push:
+      branches: [ training/cicd_pipeline ]
+      paths : 
+        - .github/workflows/android_lint.yml
+        - '*/src/**'
+        - gradle/**
+        - '**.gradle'
+        - gradle.properties
+        - gradlew*
+    pull_request:
+      branches: [ training/cicd_pipeline ]
+
+jobs:
+    run-unit-test:
+        name: Run Unit Tests
+        runs-on: ubuntu-latest
+        timeout-minutes: 100
+        steps:
+            - name:                 "Checkout Repo"
+              uses: actions/checkout@v4
+              with: 
+                submodules: true
+
+
+

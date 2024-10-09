@@ -5,6 +5,7 @@ on:
     branches: [ training/cicd_pipeline ]
     paths : 
       - .github/workflows/android_lint.yml
+      - .github/workflows/automated_test.yml
       - '*/src/**'
       - gradle/**
       - '**.gradle'

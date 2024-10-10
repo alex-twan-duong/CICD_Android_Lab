@@ -1,37 +1,31 @@
 name: Continuous Deployment Workflow
-
-on:
-    push:
-        branches:
-            - 'releases/**'
-        paths:
-            - '.github/workflows/**'
-    workflow_dispatch: null #Manual trigger
-
+'on':
+  push:
+    branches:
+      - releases/**
+    paths:
+      - .github/workflows/**
+  workflow_dispatch: null
 defaults:
-    run:
-        shell: bash
-
+  run:
+    shell: bash
 jobs:
-    deploy-development:
-        environment: development
-        name: Deploy to Dev
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@v4
-            - name: Start deploy to Dev
-              run: "echo ${{ secrets.DEV_SECRET_1 }}"
-
-    deploy-stage:
-        environment: stage
-        name: Deploy to Stage
-        runs-on: ubuntu-latest
-        needs: deploy-development
-
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@v4
-            - name: Start deploy to Stage
-              run: "echo ${{ secrets.STAGE_SECRET_1 }}"
+  deploy-development:
+    environment: development
+    name: Deploy to Dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Start deploy to Dev
+        run: 'echo ${{ secrets.DEV_SECRET_1 }}'
+  deploy-stage:
+    environment: stage
+    name: Deploy to Stage
+    runs-on: ubuntu-latest
+    needs: deploy-development
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Start deploy to Stage
+        run: 'echo ${{ secrets.STAGE_SECRET_1 }}'

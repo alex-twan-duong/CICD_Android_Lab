@@ -17,7 +17,7 @@ jobs:
         uses: actions/github-script@v7
         id: verify_id_no
         with:
-          github-token: ${{ secrets.DEPLOY_SECRET }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
           script: |
             const response = await github.rest.pulls.get({
@@ -42,7 +42,7 @@ jobs:
       - name: Update status
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.DEPLOY_SECRET }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const output = `#### Staging created
             > PR #${{ github.event.inputs.PR_Number }} has been deployed

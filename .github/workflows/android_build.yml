@@ -29,11 +29,11 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build project
         run: ./gradlew build
-      - name: 'Assemble APK Debug - ${{ env.main_project_module }} module'
+      - name: Assemble APK Debug - ${{ env.main_project_module }} module
         run: ./gradlew assembleDebug
-      - name: 'Assemble APK Release - ${{ env.main_project_module }} module'
+      - name: Assemble APK Release - ${{ env.main_project_module }} module
         run: ./gradlew assemble
-      - name: 'Assemble AAB Bundle - ${{ env.main_project_module }} module'
+      - name: Assemble AAB Bundle - ${{ env.main_project_module }} module
         run: './gradlew ${{ env.main_project_module }}:bundleRelease'
       - name: Upload APK Debug
         uses: actions/upload-artifact@v4
